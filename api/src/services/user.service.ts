@@ -1,6 +1,7 @@
 import { Inject, Service } from "typedi";
 import { Repository } from "typeorm";
 import { User } from "../entities/user.entity";
+import { UserInput } from "../resolvers/inputs/user-input";
 
 @Service()
 export class UserService {
@@ -16,5 +17,9 @@ export class UserService {
 
   async getUser(id: number): Promise<User | null> {
     return this.userRepository.findOneBy({ id });
+  }
+
+  async createUser(user: UserInput) {
+    return this.userRepository.save(user);
   }
 }

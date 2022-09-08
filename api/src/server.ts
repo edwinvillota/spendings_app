@@ -1,8 +1,9 @@
 import express, { Application } from "express";
-import { graphqlHTTP } from "express-graphql";
 import { schema } from "./schema";
 import cors from "cors";
 import { AppDataSource } from "./common/persistence/data-source";
+import { ApolloServer } from "apollo-server";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
 export class Server {
   private app: Application;
@@ -23,13 +24,13 @@ export class Server {
   }
 
   async graphql() {
-    this.app.use(
-      "/graphql",
-      graphqlHTTP({
-        schema: await schema,
-        graphiql: true,
-      })
-    );
+    const server = new ApolloServer({
+      schema: await schema,
+      plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
+    });
+
+    const { url } = await server.listen();
+    console.log(`GraphQL running on ${url}`);
   }
 
   async database() {
