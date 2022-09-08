@@ -10,6 +10,6 @@ type Query {
 
 type User {
   email: String!
-  id: Float!
+  id: ID!
   name: String!
 }

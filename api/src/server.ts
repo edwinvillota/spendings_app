@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import { graphqlHTTP } from "express-graphql";
 import { schema } from "./schema";
 import cors from "cors";
+import { AppDataSource } from "./common/persistence/data-source";
 
 export class Server {
   private app: Application;
@@ -12,6 +13,7 @@ export class Server {
     this.port = 3000;
 
     this.middlewares();
+    this.database();
     this.graphql();
   }
 
@@ -28,6 +30,15 @@ export class Server {
         graphiql: true,
       })
     );
+  }
+
+  async database() {
+    try {
+      await AppDataSource.initialize();
+      console.log("Database connected");
+    } catch (error) {
+      console.log("Error connecting with database", error);
+    }
   }
 
   listen() {
