@@ -27,6 +27,9 @@ export class Server {
     const server = new ApolloServer({
       schema: await schema,
       plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
+      context: ({ req }) => {
+        return { req };
+      },
     });
 
     const { url } = await server.listen();

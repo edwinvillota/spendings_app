@@ -1,5 +1,4 @@
 import { Field, ID, ObjectType } from "type-graphql";
-import { Service } from "typedi";
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
