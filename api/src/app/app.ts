@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 import "reflect-metadata";
 dotenv.config();
-import { Server } from "../src/server";
+import { Server } from "./server";
 
 const server = new Server();
 
