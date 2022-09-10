@@ -18,6 +18,7 @@ type Mutation {
 }
 
 type Query {
+  getLoggedUser: User!
   getUser(id: Float!): User!
   getUsers: [User!]!
 }
