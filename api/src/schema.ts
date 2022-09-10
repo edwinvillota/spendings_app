@@ -4,14 +4,14 @@ import { User } from "./entities/user.entity";
 import { UsersResolver } from "./resolvers/user.resolver";
 import { AppDataSource } from "./common/persistence/data-source";
 import { authChecker } from "./common/middlewares/auth-checker";
-import { AuthService } from "./services/auth.service";
+import { AuthResolver } from "./resolvers/auth.resolver";
+import { CustomAuthChecker } from "./common/clases/custom-auth-checker";
 
 Container.set("userRepository", AppDataSource.getRepository(User));
-Container.set("authService", AuthService);
 
 export const schema = buildSchema({
-  resolvers: [UsersResolver],
+  resolvers: [UsersResolver, AuthResolver],
   emitSchemaFile: true,
   container: Container,
-  authChecker,
+  authChecker: new CustomAuthChecker().check,
 });

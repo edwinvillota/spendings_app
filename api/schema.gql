@@ -3,8 +3,18 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type AccessToken {
+  token: String!
+}
+
+input CredentialsInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
   createUser(input: UserInput!): User!
+  login(input: CredentialsInput!): AccessToken!
 }
 
 type Query {
@@ -16,9 +26,11 @@ type User {
   email: String!
   id: ID!
   name: String!
+  password: String!
 }
 
 input UserInput {
   email: String!
   name: String!
+  password: String!
 }

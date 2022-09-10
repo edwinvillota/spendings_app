@@ -3,11 +3,7 @@ import { Field, InputType } from "type-graphql";
 import { User } from "../../entities/user.entity";
 
 @InputType()
-export class UserInput implements Pick<User, "name" | "email" | "password"> {
-  @Field()
-  @IsNotEmpty()
-  name!: string;
-
+export class CredentialsInput implements Pick<User, "email" | "password"> {
   @Field()
   @IsEmail()
   email!: string;
