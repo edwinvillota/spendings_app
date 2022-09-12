@@ -8,12 +8,12 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { IncomeCategory } from "./income-category.entity";
+import { SpendingCategory } from "./spending-category.entity";
 import { User } from "./user.entity";
 
 @Entity()
 @ObjectType()
-export class Income extends BaseEntity {
+export class Spending extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id!: number;
@@ -35,10 +35,10 @@ export class Income extends BaseEntity {
   @Column()
   value!: number;
 
-  @Field(() => IncomeCategory)
-  @OneToOne(() => IncomeCategory)
+  @Field(() => SpendingCategory)
+  @OneToOne(() => SpendingCategory)
   @JoinColumn()
-  category!: IncomeCategory;
+  category!: SpendingCategory;
 
   @Field(() => Int)
   @Column()

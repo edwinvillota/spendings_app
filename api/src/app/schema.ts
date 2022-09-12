@@ -11,6 +11,8 @@ import { SpendingCategory } from "./entities/spending-category.entity";
 import { SpendingCategoryResolver } from "./resolvers/spending-category.resolver";
 import { Income } from "./entities/income.entity";
 import { IncomeResolver } from "./resolvers/income.resolver";
+import { Spending } from "./entities/spending.entity";
+import { SpendingResolver } from "./resolvers/spending.resolver";
 
 Container.set("userRepository", AppDataSource.getRepository(User));
 Container.set(
@@ -22,6 +24,7 @@ Container.set(
   AppDataSource.getRepository(SpendingCategory)
 );
 Container.set("incomeRepository", AppDataSource.getRepository(Income));
+Container.set("spendingRepository", AppDataSource.getRepository(Spending));
 
 export const schema = buildSchema({
   resolvers: [
@@ -30,6 +33,7 @@ export const schema = buildSchema({
     IncomeCategoryResolver,
     SpendingCategoryResolver,
     IncomeResolver,
+    SpendingResolver,
   ],
   emitSchemaFile: true,
   container: Container,

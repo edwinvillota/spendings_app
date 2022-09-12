@@ -49,14 +49,17 @@ input IncomeInput {
 type Mutation {
   createIncome(input: IncomeInput!): Income!
   createIncomeCategory(input: IncomeCategoryInput!): IncomeCategory!
+  createSpending(input: SpendingInput!): Spending!
   createSpendingCategory(input: SpendingCategoryInput!): SpendingCategory!
   createUser(input: UserInput!): User!
   deleteIncome(id: Float!): Income!
   deleteIncomeCategory(id: Float!): IncomeCategory!
+  deleteSpending(id: Float!): Spending!
   deleteSpendingCategory(id: Float!): SpendingCategory!
   login(input: CredentialsInput!): AccessToken!
   updateIncome(id: Float!, input: IncomeInput!): Income!
   updateIncomeCategory(id: Float!, input: IncomeCategoryInput!): IncomeCategory!
+  updateSpending(id: Float!, input: SpendingInput!): Spending!
   updateSpendingCategory(id: Float!, input: SpendingCategoryInput!): SpendingCategory!
 }
 
@@ -66,10 +69,24 @@ type Query {
   getIncomeCategoryById(id: Float!): IncomeCategory!
   getIncomes: [Income!]!
   getLoggedUser: User!
+  getSpendingById(id: Float!): Spending!
   getSpendingCategories: [SpendingCategory!]!
   getSpendingCategoryById(id: Float!): SpendingCategory!
+  getSpendings: [Spending!]!
   getUser(id: Float!): User!
   getUsers: [User!]!
+}
+
+type Spending {
+  category: SpendingCategory!
+  categoryId: Int!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime
+  user: User!
+  userId: Int!
+  value: Float!
 }
 
 type SpendingCategory {
@@ -81,6 +98,12 @@ type SpendingCategory {
 
 input SpendingCategoryInput {
   name: String!
+}
+
+input SpendingInput {
+  categoryId: Float!
+  name: String!
+  value: Float!
 }
 
 type User {

@@ -15,7 +15,7 @@ export class SpendingCategoryService {
     this.spendingCategoryRepository = spendingCategoryRepository;
   }
 
-  private findCategoryById(id: number) {
+  public findCategoryById(id: number) {
     return this.spendingCategoryRepository.findOneBy({ id });
   }
 
