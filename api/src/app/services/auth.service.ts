@@ -7,7 +7,6 @@ import { ConflictException } from "../common/exceptions/conflict-exception";
 import { compareSync } from "bcrypt";
 import { InternalServerException } from "../common/exceptions/internal-server-exception";
 import { UnauthorizedException } from "../common/exceptions/unauthorized-exception";
-import { JWTPayload } from "../common/interfaces/jwt-payload";
 import { User } from "../entities/user.entity";
 
 @Service()
@@ -37,7 +36,7 @@ export class AuthService {
             if (!token)
               throw new InternalServerException("Token doesn't exists");
             resolve({
-              token: `Bearer ${token}`,
+              token,
             });
           }
         );

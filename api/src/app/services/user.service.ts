@@ -12,6 +12,10 @@ export class UserService {
     this.userRepository = userRepository;
   }
 
+  getUserById(id: number) {
+    return this.userRepository.findOneBy({ id });
+  }
+
   getUserByEmail(email: string) {
     return this.userRepository.findOneBy({ email });
   }

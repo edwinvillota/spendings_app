@@ -12,15 +12,75 @@ input CredentialsInput {
   password: String!
 }
 
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
+type Income {
+  category: IncomeCategory!
+  categoryId: Int!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime
+  user: User!
+  userId: Int!
+  value: Float!
+}
+
+type IncomeCategory {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime
+}
+
+input IncomeCategoryInput {
+  name: String!
+}
+
+input IncomeInput {
+  categoryId: Float!
+  name: String!
+  value: Float!
+}
+
 type Mutation {
+  createIncome(input: IncomeInput!): Income!
+  createIncomeCategory(input: IncomeCategoryInput!): IncomeCategory!
+  createSpendingCategory(input: SpendingCategoryInput!): SpendingCategory!
   createUser(input: UserInput!): User!
+  deleteIncome(id: Float!): Income!
+  deleteIncomeCategory(id: Float!): IncomeCategory!
+  deleteSpendingCategory(id: Float!): SpendingCategory!
   login(input: CredentialsInput!): AccessToken!
+  updateIncome(id: Float!, input: IncomeInput!): Income!
+  updateIncomeCategory(id: Float!, input: IncomeCategoryInput!): IncomeCategory!
+  updateSpendingCategory(id: Float!, input: SpendingCategoryInput!): SpendingCategory!
 }
 
 type Query {
+  getIncomeById(id: Float!): Income!
+  getIncomeCategories: [IncomeCategory!]!
+  getIncomeCategoryById(id: Float!): IncomeCategory!
+  getIncomes: [Income!]!
   getLoggedUser: User!
+  getSpendingCategories: [SpendingCategory!]!
+  getSpendingCategoryById(id: Float!): SpendingCategory!
   getUser(id: Float!): User!
   getUsers: [User!]!
+}
+
+type SpendingCategory {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime
+}
+
+input SpendingCategoryInput {
+  name: String!
 }
 
 type User {
