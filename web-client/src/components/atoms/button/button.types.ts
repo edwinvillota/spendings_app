@@ -8,4 +8,5 @@ export enum ButtonTypeEnum {
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   preset?: ButtonTypeEnum;
+  loading?: boolean;
 };

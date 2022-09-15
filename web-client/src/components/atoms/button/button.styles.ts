@@ -21,6 +21,8 @@ const cssByType = css<ButtonProps>`
 `;
 
 export const StyledButton = styled.button<ButtonProps>`
+  display: flex;
+  justify-content: center;
   padding: ${({ theme }) => theme.sizes.s};
   border: none;
   font-weight: bold;
