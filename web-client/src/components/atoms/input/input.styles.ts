@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { InputProps } from "./input.types";
 
 export const Wrapper = styled.label`
   display: flex;
@@ -8,7 +9,11 @@ export const Wrapper = styled.label`
 
 export const Label = styled.span``;
 
-export const StyledInput = styled.input`
+export const ErrorMessage = styled.span`
+  color: red;
+`;
+
+export const StyledInput = styled.input<InputProps>`
   padding: ${({ theme }) => theme.sizes.s};
   border: ${({ theme }) => `solid ${theme.sizes.xxs} ${theme.colors.dark}`};
 `;

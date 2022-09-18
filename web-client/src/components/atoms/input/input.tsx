@@ -1,11 +1,15 @@
-import { StyledInput, Wrapper, Label } from "./input.styles";
+import { forwardRef } from "react";
+import { StyledInput, Wrapper, Label, ErrorMessage } from "./input.styles";
 import { InputProps } from "./input.types";
 
-export const Input = ({ label, ...props }: InputProps) => {
-  return (
-    <Wrapper>
-      <Label>{label}</Label>
-      <StyledInput {...props} />
-    </Wrapper>
-  );
-};
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, ...props }: InputProps, ref) => {
+    return (
+      <Wrapper>
+        <Label>{label}</Label>
+        <StyledInput {...props} ref={ref} />
+        {props.error && <ErrorMessage>{props.error}</ErrorMessage>}
+      </Wrapper>
+    );
+  }
+);
