@@ -1,3 +1,4 @@
+import { WithChildren } from "@/common/types/with-children";
 import { Outlet } from "react-router-dom";
 import { Main } from "./basic-template.styles";
 import {
@@ -6,12 +7,13 @@ import {
 } from "./basic-template.types";
 
 export const BasicTemplate = ({
+  children,
   alignVertical = BasicTemplateAlignEnum.Top,
   alignHorizontal = BasicTemplateAlignEnum.Left,
-}: BasicTemplateProps): JSX.Element => {
+}: WithChildren<BasicTemplateProps>): JSX.Element => {
   return (
     <Main alignHorizontal={alignHorizontal} alignVertical={alignVertical}>
-      <Outlet />
+      {children ? children : <Outlet />}
     </Main>
   );
 };

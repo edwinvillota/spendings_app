@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import { AuthContextState } from "./auth-context.types";
+import { AuthContextReturnType } from "./auth-context.types";
 
-export const AuthContext = createContext<AuthContextState>(
-  {} as AuthContextState
+export const AuthContext = createContext<AuthContextReturnType>(
+  {} as AuthContextReturnType
 );

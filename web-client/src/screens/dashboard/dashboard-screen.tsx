@@ -1,24 +1,15 @@
 import useAuthContext from "@/common/auth/hooks/use-auth-context";
-import { GET_USERS } from "@/graphql/queries/getUsers.query";
-import { useQuery } from "@apollo/client";
+import { Button } from "@/components/atoms/button/button";
+import { ButtonTypeEnum } from "@/components/atoms/button/button.types";
 
 export const DashboardScreen = () => {
-  const { data } = useQuery<{
-    getUsers: [{ id: number; name: string; email: string }];
-  }>(GET_USERS);
-
-  const { authenticated, user, loading, error } = useAuthContext();
+  const { logout } = useAuthContext();
 
   return (
     <div>
-      <span>Dashboard Screen</span> <br />
-      <span>Authenticated: {String(authenticated)}</span> <br />
-      <span>Loading: {String(loading)}</span>
-      <br />
-      <span>Error: {JSON.stringify(error)}</span>
-      <br />
-      <span>User: {JSON.stringify(user)}</span>
-      <br />
+      <Button preset={ButtonTypeEnum.Primary} onClick={() => logout()}>
+        Logout
+      </Button>
     </div>
   );
 };

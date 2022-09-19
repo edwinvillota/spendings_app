@@ -5,12 +5,10 @@ import { Form, Title } from "./login-form.styles";
 import { useLogin } from "@/graphql/hooks/use-login/use-login";
 import { useForm } from "react-hook-form";
 import { LoginFormData } from "./login-form.types";
-import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
   const [login, { loading, error }] = useLogin();
   const { register, handleSubmit } = useForm<LoginFormData>();
-  const navigate = useNavigate();
 
   const onSubmit = handleSubmit(({ email, password }) =>
     login({
@@ -21,11 +19,13 @@ export const LoginForm = () => {
         },
       },
       onCompleted(data) {
+        console.log("Completed");
+
         const token = data.login.token;
 
         if (token) {
           localStorage.setItem("token", token);
-          navigate("/dashboard", { replace: true });
+          location.reload();
         }
       },
     })

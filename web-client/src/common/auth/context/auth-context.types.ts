@@ -8,13 +8,10 @@ export interface AuthContextState {
   user?: User;
 }
 
-export enum AuthActionsEnum {
-  LOGIN_REQUEST = "LOGIN_REQUEST",
-  LOGIN_SUCCESS = "LOGIN_SUCCESS",
-  LOGIN_FAILURE = "LOGIN_FAILUER",
+export interface AuthContextMethods {
+  logout(): void;
 }
 
-export type AuthContextActions =
-  | { type: AuthActionsEnum.LOGIN_REQUEST }
-  | { type: AuthActionsEnum.LOGIN_SUCCESS; payload: User }
-  | { type: AuthActionsEnum.LOGIN_FAILURE };
+export interface AuthContextReturnType
+  extends AuthContextState,
+    AuthContextMethods {}

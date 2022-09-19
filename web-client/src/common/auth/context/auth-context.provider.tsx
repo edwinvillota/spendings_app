@@ -1,4 +1,5 @@
 import { useGetLoggedUser } from "@/graphql/hooks/use-get-logged-user/use-get-logged-user";
+import { useApolloClient } from "@apollo/client";
 import { WithChildren } from "../../types/with-children";
 import { AuthContext } from "./auth-context";
 import { AuthContextState } from "./auth-context.types";
@@ -7,6 +8,7 @@ const { Provider } = AuthContext;
 
 export const AuthProvider = ({ children }: WithChildren) => {
   const { data, error, loading } = useGetLoggedUser();
+  const client = useApolloClient();
 
   const state: AuthContextState = {
     loading,
@@ -15,5 +17,11 @@ export const AuthProvider = ({ children }: WithChildren) => {
     authenticated: data?.getLoggedUser ? true : false,
   };
 
-  return <Provider value={state}>{children}</Provider>;
+  const logout = () => {
+    localStorage.clear();
+    client.resetStore();
+    location.reload();
+  };
+
+  return <Provider value={{ ...state, logout }}>{children}</Provider>;
 };
