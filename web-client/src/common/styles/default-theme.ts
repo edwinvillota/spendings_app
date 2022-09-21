@@ -13,6 +13,6 @@ export const defaultTheme: DefaultTheme = {
   colors: {
     dark: "#000000",
     light: "#FFFFFF",
-    gray: "#F0F0F0",
+    gray: "#F0F5F9",
   },
 };
