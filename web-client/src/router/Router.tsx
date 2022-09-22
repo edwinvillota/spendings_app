@@ -5,27 +5,40 @@ import { LoginScreen } from "@/screens/login/login-screen";
 import { DashboardScreen } from "@/screens/dashboard/dashboard-screen";
 import { PrivateRoute } from "@/common/auth/components/private-route/private-route";
 import { SidemenuTemplate } from "@/components/templates/sidemenu-template/sidemenu-template";
+import { useState } from "react";
 
-export const Router = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <BasicTemplate
-            alignHorizontal={BasicTemplateAlignEnum.Center}
-            alignVertical={BasicTemplateAlignEnum.Center}
-          />
-        }
-      >
-        <Route index element={<LoginScreen />} />
-        <Route path="login" element={<LoginScreen />} />
-        <Route element={<PrivateRoute />}>
-          <Route element={<SidemenuTemplate />}>
-            <Route path="dashboard" element={<DashboardScreen />} />
+export const Router = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <BasicTemplate
+              alignHorizontal={BasicTemplateAlignEnum.Center}
+              alignVertical={BasicTemplateAlignEnum.Center}
+            />
+          }
+        >
+          <Route index element={<LoginScreen />} />
+          <Route path="login" element={<LoginScreen />} />
+          <Route element={<PrivateRoute />}>
+            <Route
+              element={
+                <SidemenuTemplate
+                  isMenuOpen={isMenuOpen}
+                  onClose={() => setIsMenuOpen(false)}
+                  onOpen={() => setIsMenuOpen(true)}
+                />
+              }
+            >
+              <Route path="dashboard" element={<DashboardScreen />} />
+            </Route>
           </Route>
         </Route>
-      </Route>
-    </Routes>
-  </BrowserRouter>
-);
+      </Routes>
+    </BrowserRouter>
+  );
+};

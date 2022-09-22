@@ -1,4 +1,5 @@
 import { WithChildren } from "@/common/types/with-children";
+import { Sidemenu } from "@/components/organisms/sidemenu/sidemenu";
 import { Outlet } from "react-router-dom";
 import { BasicTemplate } from "../basic-template/basic-template";
 import {
@@ -7,16 +8,33 @@ import {
   Content,
   AsideHeader,
   CloseIcon,
+  MenuIcon,
+  MenuButton,
+  AsideContent,
+  AsideTitle,
 } from "./sidemenu-template.styles";
+import { SidemenuTemplateProps } from "./sidemenu-template.types";
 
-export const SidemenuTemplate = ({ children }: WithChildren) => {
+export const SidemenuTemplate = ({
+  children,
+  isMenuOpen = true,
+  onClose,
+  onOpen,
+}: WithChildren<SidemenuTemplateProps>) => {
   return (
     <BasicTemplate>
-      <Main>
-        <Aside>
+      <Main isMenuOpen={isMenuOpen}>
+        <MenuButton onClick={onOpen}>
+          <MenuIcon />
+        </MenuButton>
+        <Aside isMenuOpen={isMenuOpen}>
           <AsideHeader>
-            <CloseIcon />
+            <AsideTitle>Menu</AsideTitle>
+            <CloseIcon onClick={onClose} />
           </AsideHeader>
+          <AsideContent>
+            <Sidemenu />
+          </AsideContent>
         </Aside>
         <Content>{children || <Outlet />}</Content>
       </Main>
