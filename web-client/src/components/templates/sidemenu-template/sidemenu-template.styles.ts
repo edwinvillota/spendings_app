@@ -33,6 +33,7 @@ export const MenuButton = styled.div`
   right: 0;
   top: 0;
   padding: ${({ theme }) => theme.sizes.m};
+  z-index: 2;
 `;
 
 export const CloseIcon = styled(AiOutlineClose)`
@@ -75,6 +76,7 @@ export const Aside = styled.aside<Pick<SidemenuTemplateProps, "isMenuOpen">>`
   transition: left 0.2s ease-in-out;
   background-color: ${({ theme }) => theme.colors.light};
   gap: ${({ theme }) => theme.sizes.s};
+  z-index: 2;
 `;
 
 export const AsideHeader = styled.div`

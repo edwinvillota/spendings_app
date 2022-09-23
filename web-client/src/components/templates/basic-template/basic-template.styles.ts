@@ -10,6 +10,7 @@ export const Main = styled.main<BasicTemplateProps>`
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: ${({ theme }) => theme.sizes.m};
   justify-content: ${({ alignVertical }) =>
     alignVertical === BasicTemplateAlignEnum.Center ? "center" : "flex-start"};
   align-items: ${({ alignHorizontal }) =>

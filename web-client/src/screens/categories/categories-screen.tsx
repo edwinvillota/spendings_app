@@ -1,12 +1,12 @@
 import { ScreenTemplate } from "@/components/templates/screen-template/screen-template";
 
-export const DashboardScreen = () => {
+export const CategoriesScreen = () => {
   return (
     <ScreenTemplate>
       <ScreenTemplate.Header>
-        <h1>Dashboard</h1>
+        <h1>Categories</h1>
       </ScreenTemplate.Header>
-      <span>Content</span>
+      <span>Categories content</span>
     </ScreenTemplate>
   );
 };

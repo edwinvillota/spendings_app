@@ -16,6 +16,7 @@ export const Sidemenu = () => {
     <Nav>
       <NavLinkContainer>
         <NavLink to="/dashboard">Dashboard</NavLink>
+        <NavLink to="/categories">Categories</NavLink>
       </NavLinkContainer>
       <ButtonContainer>
         <LogoutButton preset={ButtonTypeEnum.Link} onClick={() => logout()}>
