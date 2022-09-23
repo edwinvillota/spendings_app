@@ -2,7 +2,7 @@ import { ScreenTemplate } from "@/components/templates/screen-template/screen-te
 
 export const CategoriesScreen = () => {
   return (
-    <ScreenTemplate>
+    <ScreenTemplate loading>
       <ScreenTemplate.Header>
         <h1>Categories</h1>
       </ScreenTemplate.Header>
