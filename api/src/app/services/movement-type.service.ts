@@ -2,7 +2,10 @@ import { Inject, Service } from "typedi";
 import { Repository } from "typeorm";
 import { ConflictException } from "../common/exceptions/conflict-exception";
 import { MovementType } from "../entities/movement-type.entity";
-import { MovementTypeInput } from "../resolvers/inputs/movement-type.input";
+import {
+  MovementTypeInput,
+  MovementTypeUpdateInput,
+} from "../resolvers/inputs/movement-type.input";
 
 @Service()
 export class MovementTypeService {
@@ -31,7 +34,7 @@ export class MovementTypeService {
     return this.findMovementTypeById(id);
   }
 
-  public async updateMovementType(id: number, input: MovementTypeInput) {
+  public async updateMovementType(id: number, input: MovementTypeUpdateInput) {
     const movementType = await this.findMovementTypeById(id);
 
     if (!movementType) {

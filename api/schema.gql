@@ -65,6 +65,11 @@ input MovementTypeInput {
   name: String!
 }
 
+input MovementTypeUpdateInput {
+  direction: String
+  name: String
+}
+
 type Mutation {
   createIncome(input: IncomeInput!): Income!
   createIncomeCategory(input: IncomeCategoryInput!): IncomeCategory!
@@ -80,7 +85,7 @@ type Mutation {
   login(input: CredentialsInput!): AccessToken!
   updateIncome(id: Float!, input: IncomeInput!): Income!
   updateIncomeCategory(id: Float!, input: IncomeCategoryInput!): IncomeCategory!
-  updateMovementType(id: Float!, input: MovementTypeInput!): MovementType!
+  updateMovementType(id: Float!, input: MovementTypeUpdateInput!): MovementType!
   updateSpending(id: Float!, input: SpendingInput!): Spending!
   updateSpendingCategory(id: Float!, input: SpendingCategoryInput!): SpendingCategory!
 }

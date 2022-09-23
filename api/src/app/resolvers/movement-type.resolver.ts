@@ -2,7 +2,10 @@ import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { Service } from "typedi";
 import { MovementType } from "../entities/movement-type.entity";
 import { MovementTypeService } from "../services/movement-type.service";
-import { MovementTypeInput } from "./inputs/movement-type.input";
+import {
+  MovementTypeInput,
+  MovementTypeUpdateInput,
+} from "./inputs/movement-type.input";
 
 @Service()
 @Resolver(() => MovementType)
@@ -31,7 +34,7 @@ export class MovementTypeResolver {
   @Mutation(() => MovementType)
   async updateMovementType(
     @Arg("id") id: number,
-    @Arg("input") input: MovementTypeInput
+    @Arg("input") input: MovementTypeUpdateInput
   ) {
     return await this.movementTypeService.updateMovementType(id, input);
   }
