@@ -22,8 +22,12 @@ export class MovementTypeService {
   }
 
   public async createMovementType(input: MovementTypeInput) {
-    const movementType = this.movementTypeRepository.create(input);
-    return this.movementTypeRepository.save(movementType);
+    try {
+      const movementType = this.movementTypeRepository.create(input);
+      return this.movementTypeRepository.save(movementType);
+    } catch (error) {
+      throw error;
+    }
   }
 
   public async getMovementTypes() {
@@ -31,7 +35,12 @@ export class MovementTypeService {
   }
 
   public async getMovementTypeById(id: number) {
-    return this.findMovementTypeById(id);
+    const movementType = await this.findMovementTypeById(id);
+
+    if (!movementType)
+      throw new ConflictException(`Movement with id: ${id} doesn't exists`);
+
+    return movementType;
   }
 
   public async updateMovementType(id: number, input: MovementTypeUpdateInput) {
