@@ -1,10 +1,10 @@
-import { Field, ID, ObjectType } from "type-graphql";
+import { Field, ID, Int, ObjectType } from "type-graphql";
 import {
   BaseEntity,
   Column,
   Entity,
   JoinColumn,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { MovementType } from "./movement-type.entity";
@@ -17,11 +17,28 @@ export class Category extends BaseEntity {
   id!: number;
 
   @Field(() => String)
-  @Column()
+  @Column({ unique: true })
   name!: string;
 
   @Field(() => MovementType)
-  @OneToOne(() => MovementType)
+  @ManyToOne((type) => MovementType)
   @JoinColumn()
   movementType!: MovementType;
+
+  @Field(() => Int)
+  @Column()
+  movementTypeId!: number;
+
+  @Field(() => Date)
+  @Column({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP",
+  })
+  createdAt!: Date;
+
+  @Field(() => Date, { nullable: true })
+  @Column({
+    nullable: true,
+  })
+  updatedAt!: Date;
 }

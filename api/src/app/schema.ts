@@ -15,6 +15,8 @@ import { Spending } from "./entities/spending.entity";
 import { SpendingResolver } from "./resolvers/spending.resolver";
 import { MovementType } from "./entities/movement-type.entity";
 import { MovementTypeResolver } from "./resolvers/movement-type.resolver";
+import { Category } from "./entities/category.entity";
+import { CategoryResolver } from "./resolvers/category.resolver";
 
 Container.set("userRepository", AppDataSource.getRepository(User));
 Container.set(
@@ -31,6 +33,7 @@ Container.set(
   "movementTypeRepository",
   AppDataSource.getRepository(MovementType)
 );
+Container.set("categoryRepository", AppDataSource.getRepository(Category));
 
 export const schema = buildSchema({
   resolvers: [
@@ -41,6 +44,7 @@ export const schema = buildSchema({
     IncomeResolver,
     SpendingResolver,
     MovementTypeResolver,
+    CategoryResolver,
   ],
   emitSchemaFile: true,
   container: Container,

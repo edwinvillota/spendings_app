@@ -7,6 +7,25 @@ type AccessToken {
   token: String!
 }
 
+type Category {
+  createdAt: DateTime!
+  id: ID!
+  movementType: MovementType!
+  movementTypeId: Int!
+  name: String!
+  updatedAt: DateTime
+}
+
+input CategoryInput {
+  movementTypeId: Float!
+  name: String!
+}
+
+input CategoryUpdateInput {
+  movementTypeId: Float
+  name: String
+}
+
 input CredentialsInput {
   email: String!
   password: String!
@@ -71,18 +90,21 @@ input MovementTypeUpdateInput {
 }
 
 type Mutation {
+  createCategory(input: CategoryInput!): Category!
   createIncome(input: IncomeInput!): Income!
   createIncomeCategory(input: IncomeCategoryInput!): IncomeCategory!
   createMovementType(input: MovementTypeInput!): MovementType!
   createSpending(input: SpendingInput!): Spending!
   createSpendingCategory(input: SpendingCategoryInput!): SpendingCategory!
   createUser(input: UserInput!): User!
+  deleteCategory(id: Float!): Category!
   deleteIncome(id: Float!): Income!
   deleteIncomeCategory(id: Float!): IncomeCategory!
   deleteMovementType(id: Float!): MovementType!
   deleteSpending(id: Float!): Spending!
   deleteSpendingCategory(id: Float!): SpendingCategory!
   login(input: CredentialsInput!): AccessToken!
+  updateCategory(id: Float!, input: CategoryUpdateInput!): Category!
   updateIncome(id: Float!, input: IncomeInput!): Income!
   updateIncomeCategory(id: Float!, input: IncomeCategoryInput!): IncomeCategory!
   updateMovementType(id: Float!, input: MovementTypeUpdateInput!): MovementType!
@@ -91,6 +113,8 @@ type Mutation {
 }
 
 type Query {
+  getCategories: [Category!]!
+  getCategoryById(id: Float!): Category!
   getIncomeById(id: Float!): Income!
   getIncomeCategories: [IncomeCategory!]!
   getIncomeCategoryById(id: Float!): IncomeCategory!
