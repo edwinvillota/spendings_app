@@ -1,4 +1,3 @@
-import { Ctx } from "type-graphql";
 import { Inject, Service } from "typedi";
 import { Repository } from "typeorm";
 import { ConflictException } from "../common/exceptions/conflict-exception";

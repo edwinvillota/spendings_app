@@ -1,4 +1,4 @@
-import { buildSchema } from "type-graphql";
+import { buildSchema, ResolverData } from "type-graphql";
 import { Container } from "typedi";
 import { User } from "./entities/user.entity";
 import { UsersResolver } from "./resolvers/user.resolver";
@@ -17,6 +17,7 @@ import { MovementType } from "./entities/movement-type.entity";
 import { MovementTypeResolver } from "./resolvers/movement-type.resolver";
 import { Category } from "./entities/category.entity";
 import { CategoryResolver } from "./resolvers/category.resolver";
+import { ContextType } from "./common/interfaces/context-type";
 
 Container.set("userRepository", AppDataSource.getRepository(User));
 Container.set(
@@ -36,6 +37,8 @@ Container.set(
 Container.set("categoryRepository", AppDataSource.getRepository(Category));
 
 export const schema = buildSchema({
+  container: ({ context }: ResolverData<ContextType>) =>
+    Container.of(context.requestId),
   resolvers: [
     UsersResolver,
     AuthResolver,
@@ -47,6 +50,5 @@ export const schema = buildSchema({
     CategoryResolver,
   ],
   emitSchemaFile: true,
-  container: Container,
   authChecker: new CustomAuthChecker().check,
 });
