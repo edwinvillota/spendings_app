@@ -18,6 +18,7 @@ import { MovementTypeResolver } from "./resolvers/movement-type.resolver";
 import { Category } from "./entities/category.entity";
 import { CategoryResolver } from "./resolvers/category.resolver";
 import { ContextType } from "./common/interfaces/context-type";
+import { MovementResolver } from "./resolvers/movement.resolver";
 
 Container.set("userRepository", AppDataSource.getRepository(User));
 Container.set(
@@ -48,6 +49,7 @@ export const schema = buildSchema({
     SpendingResolver,
     MovementTypeResolver,
     CategoryResolver,
+    MovementResolver,
   ],
   emitSchemaFile: true,
   authChecker: new CustomAuthChecker().check,

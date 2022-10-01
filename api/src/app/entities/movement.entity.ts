@@ -1,4 +1,4 @@
-import { Field, ID, Int, ObjectType } from "type-graphql";
+import { Field, Float, ID, Int, ObjectType } from "type-graphql";
 import {
   BaseEntity,
   Column,
@@ -26,6 +26,10 @@ export class Movement extends BaseEntity {
   @Column()
   userId!: number;
 
+  @Field(() => String)
+  @Column()
+  name!: string;
+
   @Field(() => Category)
   @ManyToOne(() => Category)
   @JoinColumn()
@@ -38,6 +42,10 @@ export class Movement extends BaseEntity {
   @Field(() => Date)
   @Column()
   date!: Date;
+
+  @Field(() => Float)
+  @Column({ type: "numeric" })
+  value!: number;
 
   @Field(() => Date)
   @Column({

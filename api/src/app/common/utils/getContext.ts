@@ -4,6 +4,7 @@ import { Category } from "../../entities/category.entity";
 import { IncomeCategory } from "../../entities/income-category.entity";
 import { Income } from "../../entities/income.entity";
 import { MovementType } from "../../entities/movement-type.entity";
+import { Movement } from "../../entities/movement.entity";
 import { SpendingCategory } from "../../entities/spending-category.entity";
 import { Spending } from "../../entities/spending.entity";
 import { User } from "../../entities/user.entity";
@@ -28,6 +29,7 @@ const injectRepositories = (container: ContainerInstance) => {
     AppDataSource.getRepository(MovementType)
   );
   container.set("categoryRepository", AppDataSource.getRepository(Category));
+  container.set("movementRepository", AppDataSource.getRepository(Movement));
 };
 
 export const getContext = async ({ req }: ExpressContext) => {
