@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { MovementType } from "./movement-type.entity";
+import { User } from "./user.entity";
 
 @Entity()
 @ObjectType()
@@ -15,6 +16,15 @@ export class Category extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id!: number;
+
+  @Field(() => User)
+  @ManyToOne((type) => User)
+  @JoinColumn()
+  user!: User;
+
+  @Field(() => Int)
+  @Column()
+  userId!: number;
 
   @Field(() => String)
   @Column({ unique: true })

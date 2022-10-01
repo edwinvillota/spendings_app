@@ -10,6 +10,7 @@ import {
 import { Service } from "typedi";
 import { Category } from "../entities/category.entity";
 import { CategoryService } from "../services/category.service";
+import { UserService } from "../services/user.service";
 import { CategoryInput, CategoryUpdateInput } from "./inputs/category.input";
 import { MovementTypeResolver } from "./movement-type.resolver";
 
@@ -18,7 +19,8 @@ import { MovementTypeResolver } from "./movement-type.resolver";
 export class CategoryResolver {
   constructor(
     private readonly categoryService: CategoryService,
-    private readonly movementTypeService: MovementTypeResolver
+    private readonly movementTypeService: MovementTypeResolver,
+    private readonly userService: UserService
   ) {}
 
   @Authorized()
@@ -59,5 +61,10 @@ export class CategoryResolver {
     return await this.movementTypeService.getMovementTypeById(
       category.movementTypeId
     );
+  }
+
+  @FieldResolver()
+  async user(@Root() category: Category) {
+    return await this.userService.getUserById(category.userId);
   }
 }

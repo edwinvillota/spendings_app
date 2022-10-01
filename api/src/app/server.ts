@@ -4,7 +4,9 @@ import cors from "cors";
 import { AppDataSource } from "./common/persistence/data-source";
 import { ApolloServer } from "apollo-server";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
-
+import { Container } from "typedi";
+import { ContextType } from "./common/interfaces/context-type";
+import { AuthService } from "./services/auth.service";
 export class Server {
   private app: Application;
   private port: Number;
@@ -27,8 +29,26 @@ export class Server {
     const server = new ApolloServer({
       schema: await schema,
       plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
-      context: ({ req }) => {
-        return { req };
+      context: async ({ req }) => {
+        const context = { req } as ContextType;
+        const authService = Container.get<AuthService>(AuthService);
+        const authorizationHeader = context.req.headers.authorization || "";
+        const [_bearer, token] = authorizationHeader.split(" ");
+
+        try {
+          if (!token) return context;
+          const authenticatedUser = await authService.verifyToken(token.trim());
+
+          if (authenticatedUser) {
+            context.user = authenticatedUser;
+          }
+
+          Container.set("context", context);
+          return context;
+        } catch (error) {
+          Container.set("context", context);
+          return context;
+        }
       },
     });
 
