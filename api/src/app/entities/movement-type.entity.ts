@@ -10,7 +10,10 @@ export class MovementType extends BaseEntity {
   id!: number;
 
   @Field(() => String)
-  @Column()
+  @Column({
+    unique: true,
+    nullable: false,
+  })
   name!: string;
 
   @Field(() => MovementDirectionEnum)

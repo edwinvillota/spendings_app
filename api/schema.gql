@@ -7,6 +7,27 @@ type AccessToken {
   token: String!
 }
 
+type Category {
+  createdAt: DateTime!
+  id: ID!
+  movementType: MovementType!
+  movementTypeId: Int!
+  name: String!
+  updatedAt: DateTime
+  user: User!
+  userId: Int!
+}
+
+input CategoryInput {
+  movementTypeId: Float!
+  name: String!
+}
+
+input CategoryUpdateInput {
+  movementTypeId: Float
+  name: String
+}
+
 input CredentialsInput {
   email: String!
   password: String!
@@ -46,10 +67,30 @@ input IncomeInput {
   value: Float!
 }
 
+type Movement {
+  category: Category!
+  categoryId: Int!
+  createdAt: DateTime!
+  date: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime
+  user: User!
+  userId: Int!
+  value: Float!
+}
+
 """Movement direction in/out"""
 enum MovementDirection {
   IN
   OUT
+}
+
+input MovementInput {
+  categoryId: Float!
+  date: DateTime!
+  name: String!
+  value: Float!
 }
 
 type MovementType {
@@ -70,34 +111,51 @@ input MovementTypeUpdateInput {
   name: String
 }
 
+input MovementUpdateInput {
+  categoryId: Float
+  date: DateTime
+  name: String
+  value: Float
+}
+
 type Mutation {
+  createCategory(input: CategoryInput!): Category!
   createIncome(input: IncomeInput!): Income!
   createIncomeCategory(input: IncomeCategoryInput!): IncomeCategory!
+  createMovement(input: MovementInput!): Movement!
   createMovementType(input: MovementTypeInput!): MovementType!
   createSpending(input: SpendingInput!): Spending!
   createSpendingCategory(input: SpendingCategoryInput!): SpendingCategory!
   createUser(input: UserInput!): User!
+  deleteCategory(id: Float!): Category!
   deleteIncome(id: Float!): Income!
   deleteIncomeCategory(id: Float!): IncomeCategory!
   deleteMovementType(id: Float!): MovementType!
+  deleteMovemnent(id: Float!): Movement!
   deleteSpending(id: Float!): Spending!
   deleteSpendingCategory(id: Float!): SpendingCategory!
   login(input: CredentialsInput!): AccessToken!
+  updateCategory(id: Float!, input: CategoryUpdateInput!): Category!
   updateIncome(id: Float!, input: IncomeInput!): Income!
   updateIncomeCategory(id: Float!, input: IncomeCategoryInput!): IncomeCategory!
+  updateMovement(id: Float!, input: MovementUpdateInput!): Movement!
   updateMovementType(id: Float!, input: MovementTypeUpdateInput!): MovementType!
   updateSpending(id: Float!, input: SpendingInput!): Spending!
   updateSpendingCategory(id: Float!, input: SpendingCategoryInput!): SpendingCategory!
 }
 
 type Query {
+  getCategories: [Category!]!
+  getCategoryById(id: Float!): Category!
   getIncomeById(id: Float!): Income!
   getIncomeCategories: [IncomeCategory!]!
   getIncomeCategoryById(id: Float!): IncomeCategory!
   getIncomes: [Income!]!
   getLoggedUser: User!
+  getMovementById(id: Float!): Movement!
   getMovementTypeById(id: Float!): MovementType!
   getMovementTypes: [MovementType!]!
+  getMovements: [Movement!]!
   getSpendingById(id: Float!): Spending!
   getSpendingCategories: [SpendingCategory!]!
   getSpendingCategoryById(id: Float!): SpendingCategory!

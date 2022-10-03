@@ -1,4 +1,4 @@
-import { buildSchema } from "type-graphql";
+import { buildSchema, ResolverData } from "type-graphql";
 import { Container } from "typedi";
 import { User } from "./entities/user.entity";
 import { UsersResolver } from "./resolvers/user.resolver";
@@ -15,6 +15,10 @@ import { Spending } from "./entities/spending.entity";
 import { SpendingResolver } from "./resolvers/spending.resolver";
 import { MovementType } from "./entities/movement-type.entity";
 import { MovementTypeResolver } from "./resolvers/movement-type.resolver";
+import { Category } from "./entities/category.entity";
+import { CategoryResolver } from "./resolvers/category.resolver";
+import { ContextType } from "./common/interfaces/context-type";
+import { MovementResolver } from "./resolvers/movement.resolver";
 
 Container.set("userRepository", AppDataSource.getRepository(User));
 Container.set(
@@ -31,8 +35,11 @@ Container.set(
   "movementTypeRepository",
   AppDataSource.getRepository(MovementType)
 );
+Container.set("categoryRepository", AppDataSource.getRepository(Category));
 
 export const schema = buildSchema({
+  container: ({ context }: ResolverData<ContextType>) =>
+    Container.of(context.requestId),
   resolvers: [
     UsersResolver,
     AuthResolver,
@@ -41,8 +48,9 @@ export const schema = buildSchema({
     IncomeResolver,
     SpendingResolver,
     MovementTypeResolver,
+    CategoryResolver,
+    MovementResolver,
   ],
   emitSchemaFile: true,
-  container: Container,
   authChecker: new CustomAuthChecker().check,
 });
