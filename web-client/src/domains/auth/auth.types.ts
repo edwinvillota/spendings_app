@@ -1,4 +1,4 @@
-import { User } from "@/graphql/models/user";
+import { User } from "../users/models/user";
 
 export interface LoginData {
   login: {
@@ -6,6 +6,6 @@ export interface LoginData {
   };
 }
 
-export interface LoginInput {
+export interface CredentialsInput {
   input: Pick<User, "email" | "password">;
 }

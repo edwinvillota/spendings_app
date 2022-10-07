@@ -1,13 +1,8 @@
 import { ScreenTemplate } from "@/components/templates/screen-template/screen-template";
-import { useGetCategories } from "@/graphql/hooks/use-get-categories/use-get-categories";
+import { useGetCategories } from "@/domains/categories/category.hooks";
 
 export const CategoriesScreen = () => {
-  const { data, loading } = useGetCategories([
-    "id",
-    "userId",
-    "name",
-    "user { name }",
-  ]);
+  const { data, loading } = useGetCategories();
 
   return (
     <ScreenTemplate loading={loading}>

@@ -1,4 +1,4 @@
-import { useGetLoggedUser } from "@/graphql/hooks/use-get-logged-user/use-get-logged-user";
+import { useGetLoggedUser } from "@/domains/users/user.hooks";
 import { useApolloClient } from "@apollo/client";
 import { WithChildren } from "../../types/with-children";
 import { AuthContext } from "./auth-context";
