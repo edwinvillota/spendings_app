@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { StyledInput, Wrapper, Label, ErrorMessage } from "./input.styles";
 import { InputProps } from "./input.types";
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, ...props }: InputProps, ref) => {
     return (
       <Wrapper>
@@ -13,3 +13,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+
+Input.displayName = 'Input'
+
+export { Input }
