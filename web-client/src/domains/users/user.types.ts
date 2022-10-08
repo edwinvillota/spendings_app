@@ -1,4 +1,4 @@
-import { User } from "@/graphql/models/user";
+import { User } from "./models/user";
 
 export interface GetLoggedUserData {
   getLoggedUser: User;

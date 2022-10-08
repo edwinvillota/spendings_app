@@ -1,4 +1,4 @@
-import { Category } from "@/graphql/models/category";
+import { Category } from "./models/category";
 
 export interface GetCategoriesData {
   getCategories: Category[];

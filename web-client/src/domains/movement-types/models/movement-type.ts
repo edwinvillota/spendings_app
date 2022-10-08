@@ -1,4 +1,4 @@
-import { MovementDirectionEnum } from "../enums/movement-direction.enum";
+import { MovementDirectionEnum } from "./movement-direction.enum";
 
 export interface MovementType {
   id: number;

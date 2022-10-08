@@ -2,7 +2,7 @@ import { Input } from "@atoms/input/input";
 import { Button } from "@atoms/button/button";
 import { ButtonTypeEnum } from "@/components/atoms/button/button.types";
 import { Form, Title } from "./login-form.styles";
-import { useLogin } from "@/graphql/hooks/use-login/use-login";
+import { useLogin } from "@/domains/auth/auth.hooks";
 import { useForm } from "react-hook-form";
 import { LoginFormData } from "./login-form.types";
 
@@ -19,8 +19,6 @@ export const LoginForm = () => {
         },
       },
       onCompleted(data) {
-        console.log("Completed");
-
         const token = data.login.token;
 
         if (token) {
