@@ -7,6 +7,7 @@ import { PrivateRoute } from "@/common/auth/components/private-route/private-rou
 import { SidemenuTemplate } from "@/components/templates/sidemenu-template/sidemenu-template";
 import { useState } from "react";
 import { CategoriesScreen } from "@/screens/categories/categories-screen";
+import { CategoryDetailsScreen } from "@/screens/category-details/category-details";
 
 export const Router = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,6 +39,7 @@ export const Router = () => {
               <Route path="dashboard" element={<DashboardScreen />} />
               <Route path="categories" element={<CategoriesScreen />} />
             </Route>
+            <Route path="category/:id" element={<CategoryDetailsScreen />} />
           </Route>
         </Route>
       </Routes>
