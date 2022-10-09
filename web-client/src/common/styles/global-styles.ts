@@ -62,4 +62,8 @@ export const GlobalStyle = createGlobalStyle`
     border: none;
     background-color: inherit;
   }
+  a, a:active, a:visited {
+    text-decoration: none;
+    color: inherit;
+  }
 `;

@@ -106,5 +106,4 @@ export const Content = styled.section`
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.gray};
   width: 100%;
-  padding: ${({ theme }) => theme.sizes.m};
 `;

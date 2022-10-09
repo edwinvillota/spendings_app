@@ -9,7 +9,9 @@ export const CategoryList = () => {
     <List
       items={data?.getCategories}
       keyExtractor={({ id }) => String(id)}
-      renderItem={({ name }) => <CategoryListItem>{name}</CategoryListItem>}
+      renderItem={({ id, name }) => (
+        <CategoryListItem to={`/category/${id}`}>{name}</CategoryListItem>
+      )}
       emptyComponent={<h1>It seems there is nothing to show!</h1>}
       loading={loading}
     />
