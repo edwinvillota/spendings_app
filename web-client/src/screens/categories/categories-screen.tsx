@@ -16,7 +16,8 @@ export const CategoriesScreen = () => {
       <List
         items={data?.getCategories}
         keyExtractor={(item) => String(item.id)}
-        renderItem={({ name }) => (<span>{name}</span>)} />
+        renderItem={({ name }) => <span>{name}</span>}
+      />
     </ScreenTemplate>
   );
 };

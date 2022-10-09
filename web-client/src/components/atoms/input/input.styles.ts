@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { InputProps } from "./input.types";
 
 export const Wrapper = styled.label`

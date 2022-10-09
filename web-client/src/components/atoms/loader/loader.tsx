@@ -45,12 +45,12 @@ export const Loader = ({
         } as CSSProperties
       }
     >
-      <FirstSquare ref={(el) => squares.current.push(el!)} />
+      <FirstSquare ref={(el) => el && squares.current.push(el)} />
       <SecondSquare
-        ref={(el) => squares.current.push(el!)}
+        ref={(el) => el && squares.current.push(el)}
         onAnimationEnd={onAnimationEnd}
       />
-      <ThirdSquare ref={(el) => squares.current.push(el!)} />
+      <ThirdSquare ref={(el) => el && squares.current.push(el)} />
     </Wrapper>
   );
 };

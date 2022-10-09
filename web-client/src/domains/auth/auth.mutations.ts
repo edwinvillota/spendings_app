@@ -1,9 +1,9 @@
-import { gql } from "@apollo/client";
+import { DocumentNode, gql } from "@apollo/client";
 
-export const LOGIN: any = gql`
+export const LOGIN = gql`
   mutation Login($input: CredentialsInput!) {
     login(input: $input) {
       token
     }
   }
-`;
+` as DocumentNode;
