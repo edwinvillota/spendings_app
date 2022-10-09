@@ -58,4 +58,8 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100%;
     min-width: 100%;
   }
+  button {
+    border: none;
+    background-color: inherit;
+  }
 `;
