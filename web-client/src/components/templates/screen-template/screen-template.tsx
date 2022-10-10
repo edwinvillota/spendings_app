@@ -3,12 +3,30 @@ import { Loader } from "@/components/atoms/loader/loader";
 import { useTheme } from "styled-components";
 import { BasicTemplate } from "../basic-template/basic-template";
 import { BasicTemplateAlignEnum } from "../basic-template/basic-template.types";
-import { ScreenHeader as StyledHeader } from "./screen-template.styles";
-import { ScreenTemplateProps } from "./screen-template.types";
+import {
+  ScreenContent,
+  ScreenHeader as StyledHeader,
+} from "./screen-template.styles";
+import {
+  ScreenTemplateHeaderProps,
+  ScreenTemplateProps,
+} from "./screen-template.types";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
-const Header = ({ children }: WithChildren) => (
-  <StyledHeader>{children}</StyledHeader>
-);
+const Header = ({
+  children,
+  goBack,
+}: WithChildren<ScreenTemplateHeaderProps>) => {
+  const navigate = useNavigate();
+
+  return (
+    <StyledHeader>
+      {goBack && <AiOutlineArrowLeft onClick={() => navigate(-1)} />}
+      {children}
+    </StyledHeader>
+  );
+};
 
 export const ScreenTemplate = ({
   children,
@@ -31,7 +49,7 @@ export const ScreenTemplate = ({
           squareBorderRadius="8px"
         />
       ) : (
-        children
+        <ScreenContent>{children}</ScreenContent>
       )}
     </BasicTemplate>
   );
