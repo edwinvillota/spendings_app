@@ -1,6 +1,6 @@
 export interface DetailsListItem<T> {
   label: string;
-  getter: (item: T) => string | number;
+  value: (item: T) => string | number;
 }
 
 export interface DetailsListProps<T> {

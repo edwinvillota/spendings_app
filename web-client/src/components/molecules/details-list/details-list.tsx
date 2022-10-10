@@ -18,9 +18,9 @@ const DetailsListItem = ({ label, value }: DetailsListItemProps) => {
 export const DetailsList = <T,>({ data, items }: DetailsListProps<T>) => {
   if (!data) return null;
 
-  const dataSource = items.map(({ label, getter }) => ({
+  const dataSource = items.map(({ label, value }) => ({
     label,
-    value: getter(data),
+    value: value(data),
   }));
 
   return (

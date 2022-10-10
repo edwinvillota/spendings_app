@@ -15,9 +15,9 @@ export const CategoryDetailsScreen = () => {
       <DetailsList
         data={data?.getCategoryById}
         items={[
-          { label: "Id", getter: (item) => item.id },
-          { label: "Name", getter: (item) => item.name },
-          { label: "Movement type", getter: (item) => item.movementType.name },
+          { label: "Id", value: (item) => item.id },
+          { label: "Name", value: (item) => item.name },
+          { label: "Movement type", value: (item) => item.movementType.name },
         ]}
       />
     </ScreenTemplate>
