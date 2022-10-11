@@ -4,7 +4,7 @@ import { ScreenTemplate } from "@/components/templates/screen-template/screen-te
 export const CreateCategoryScreen = () => {
   return (
     <ScreenTemplate>
-      <ScreenTemplate.Header>
+      <ScreenTemplate.Header goBack>
         <h1>Create category</h1>
       </ScreenTemplate.Header>
       <CreateCategoryForm />
