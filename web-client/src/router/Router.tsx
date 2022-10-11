@@ -8,6 +8,7 @@ import { SidemenuTemplate } from "@/components/templates/sidemenu-template/sidem
 import { useState } from "react";
 import { CategoriesScreen } from "@/screens/categories/categories-screen";
 import { CategoryDetailsScreen } from "@/screens/category-details/category-details";
+import { CreateCategoryScreen } from "@/screens/create-category/create-category-screen";
 
 export const Router = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,6 +41,7 @@ export const Router = () => {
               <Route path="categories" element={<CategoriesScreen />} />
             </Route>
             <Route path="category/:id" element={<CategoryDetailsScreen />} />
+            <Route path="category/create" element={<CreateCategoryScreen />} />
           </Route>
         </Route>
       </Routes>
